@@ -1,0 +1,8 @@
+<div [ngClass]="{'relative flex justify-center llg:px-7 gap-7':show}" class="bg-white-0 dark:bg-black-0">
+    <app-left-bar *ngIf="show" class="sticky top-0 right-0 self-start"></app-left-bar>
+    <main>
+        <router-outlet (activate)="changePage()"></router-outlet>
+        <app-mobile-bar *ngIf="show"></app-mobile-bar>
+    </main>
+    <app-right-bar *ngIf="show" class="sticky top-0 right-0 self-start"></app-right-bar>
+</div>

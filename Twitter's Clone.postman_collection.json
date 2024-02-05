@@ -1,0 +1,1842 @@
+{
+	"info": {
+		"_postman_id": "a41554d3-add1-47f7-aadf-05bef1b84495",
+		"name": "Twitter's Clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25962865"
+	},
+	"item": [
+		{
+			"name": "Logins",
+			"item": [
+				{
+					"name": "Other logins",
+					"item": [
+						{
+							"name": "Login with antonioalanxs",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\":\"antonioalanxs\",\r\n  \"password\":\"examplePassword3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login with ibai",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\":\"ibai\",\r\n  \"password\":\"ibai\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login with Keyland71",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\":\"Keyland71\",\r\n  \"password\":\"examplePassword2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login with Rubiu5",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\":\"Rubiu5\",\r\n  \"password\":\"rubius\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8443/api/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login with admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\":\"admin\",\r\n  \"password\":\"adminpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login with user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\":\"user\",\r\n  \"password\":\"pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HashtagRestController",
+			"item": [
+				{
+					"name": "getSomeTrends",
+					"item": [
+						{
+							"name": "getFirst10Trends",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/hashtags/trends?from=0&size=10",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"hashtags",
+										"trends"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "0",
+											"description": "Start position "
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "Offset"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getMoreTrends",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/hashtags/trends?from=10&size=10",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"hashtags",
+										"trends"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "10"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "noMoreTrendsAvailable",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/hashtags/trends?from=20&size=10",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"hashtags",
+										"trends"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "20"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "getSomeTweetsAssociated",
+					"item": [
+						{
+							"name": "getFirst10TweetsAssociatedToAHashtag",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/hashtags/explore/DAW?from=0&size=10",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"hashtags",
+										"explore",
+										"DAW"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getMoreTweetsAssociated",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/hashtags/explore/DAW?from=1&size=2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"hashtags",
+										"explore",
+										"DAW"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "1"
+										},
+										{
+											"key": "size",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "noMoreTweetsAssociated",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/hashtags/explore/DAW?from=20&size=10",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"hashtags",
+										"explore",
+										"DAW"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "20"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ImageRestController",
+			"item": [
+				{
+					"name": "downloadProfilePic",
+					"item": [
+						{
+							"name": "getProfilePic",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/1/profile-pic",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"1",
+										"profile-pic"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "noGetProfilePic",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/50/profile-pic",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"50",
+										"profile-pic"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "downloadBannerPîc",
+					"item": [
+						{
+							"name": "getBannerPic",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/1/banner-pic",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"1",
+										"banner-pic"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "noGetBannerPic",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/50/banner-pic",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"50",
+										"banner-pic"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "downloadTweetImages",
+					"item": [
+						{
+							"name": "getTweetImage1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/26/tweet-image1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"26",
+										"tweet-image1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "noGetTweetImage1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/40/tweet-image1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"40",
+										"tweet-image1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getTweetImage2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/13/tweet-image2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"13",
+										"tweet-image2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "noGetTweetImage2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/27/tweet-image2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"27",
+										"tweet-image2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getTweetImage3",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/13/tweet-image3",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"13",
+										"tweet-image3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "noGetTweetImage3",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/28/tweet-image2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"28",
+										"tweet-image2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getTweetImage4",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/13/tweet-image4",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"13",
+										"tweet-image4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "noGetTweetImage4",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/images/26/tweet-image4",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"images",
+										"26",
+										"tweet-image4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "NotificationsRestController",
+			"item": [
+				{
+					"name": "postNotifications",
+					"item": [
+						{
+							"name": "postLikeNotification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/notifications/new-notification?idTweet=26&idOwner=3&notificationType=\"LIKE\"",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"notifications",
+										"new-notification"
+									],
+									"query": [
+										{
+											"key": "idTweet",
+											"value": "26"
+										},
+										{
+											"key": "idOwner",
+											"value": "3"
+										},
+										{
+											"key": "notificationType",
+											"value": "\"LIKE\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteLikeNotification",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/notifications/delete-notification?idTweet=26&notificationType=\"LIKE\"",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"notifications",
+										"delete-notification"
+									],
+									"query": [
+										{
+											"key": "idTweet",
+											"value": "26"
+										},
+										{
+											"key": "notificationType",
+											"value": "\"LIKE\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postRetweetNotification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/notifications/new-notification?idTweet=26&idOwner=3&notificationType=\"RETWEET\"",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"notifications",
+										"new-notification"
+									],
+									"query": [
+										{
+											"key": "idTweet",
+											"value": "26"
+										},
+										{
+											"key": "idOwner",
+											"value": "3"
+										},
+										{
+											"key": "notificationType",
+											"value": "\"RETWEET\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRetweetNotification",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/notifications/delete-notification?idTweet=26&notificationType=\"RETWEET\"",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"notifications",
+										"delete-notification"
+									],
+									"query": [
+										{
+											"key": "idTweet",
+											"value": "26"
+										},
+										{
+											"key": "notificationType",
+											"value": "\"RETWEET\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "postMentionNotification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/notifications/new-notification?idTweet=26&idOwner=3&notificationType=\"MENTION\"",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"notifications",
+										"new-notification"
+									],
+									"query": [
+										{
+											"key": "idTweet",
+											"value": "26"
+										},
+										{
+											"key": "idOwner",
+											"value": "3"
+										},
+										{
+											"key": "notificationType",
+											"value": "\"MENTION\""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteMentionNotification",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8443/api/notifications/delete-notification?idTweet=26&notificationType=\"MENTION\"",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8443",
+									"path": [
+										"api",
+										"notifications",
+										"delete-notification"
+									],
+									"query": [
+										{
+											"key": "idTweet",
+											"value": "26"
+										},
+										{
+											"key": "notificationType",
+											"value": "\"MENTION\""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "getSomeNotifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/notifications/more-notifications?from=0&size=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"notifications",
+								"more-notifications"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSomeMentions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/notifications/more-mentions?from=0&size=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"notifications",
+								"more-mentions"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TweetRestController",
+			"item": [
+				{
+					"name": "getTweetsOfAUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/profile/3/tweets?from=0&size=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"3",
+								"tweets"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBokmarksOfTheCurrentUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/bookmarks?from=0&size=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"bookmarks"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTweetsForCurrentUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/tweets?from=0&size=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tweets"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postTweet (comment)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "Viva Postman",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/tweets/reply-tweet/16",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tweets",
+								"reply-tweet",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postTweet (new)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "Viva Postman",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/tweets/new-tweet",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tweets",
+								"new-tweet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTweet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/tweet/delete/11",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tweet",
+								"delete",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggleLike",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/tweet/like/10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tweet",
+								"like",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggleRetweet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/tweet/retweet/16",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tweet",
+								"retweet",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggleBookmark",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/tweet/bookmark/16",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tweet",
+								"bookmark",
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProfileRestController",
+			"item": [
+				{
+					"name": "getFollowers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/profile/followers/ibai?from=0&size=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"followers",
+								"ibai"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFollowed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/profile/followed/ibai?from=0&size=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"followed",
+								"ibai"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserByUsername",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/profile/ibai",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"ibai"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProfilePicture",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/profile/updateProfilePicture/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"updateProfilePicture",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateNickname",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nickname",
+									"value": "Postman",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/profile/updateNickname/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"updateNickname",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBiography",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "biography",
+									"value": "Viva Postman!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/profile/updateBiography/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"updateBiography",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProfileBanner",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/profile/updateProfileBanner/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"updateProfileBanner",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggleFollow",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/profile/toggleFollow/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"toggleFollow",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SearchRestController",
+			"item": [
+				{
+					"name": "Search_Profiles(With \"a\")",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/search/profiles/a",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"search",
+								"profiles",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search_Hashtags(#DAW)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/search/hashtags/daw",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"search",
+								"hashtags",
+								"daw"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AdminRestController",
+			"item": [
+				{
+					"name": "GetStatistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/statistics",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"statistics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ban_user_5",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/ban/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"ban",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unban_user_5",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/unban/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"unban",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify_user_5",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/verify/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"verify",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unverify_user_5",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/unverify/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"unverify",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SessionsManagementTestsRestController",
+			"item": [
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/logout",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUp_Test_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"ika\",\r\n    \"password\":\"ika\",\r\n    \"email\":\"fake@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/signup",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify_new_account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/verification?code=",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"verification"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogIn_new_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"ika\",\r\n\"password\":\"ika\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot_Password_Test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"fake@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/forgot-password",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset_Password_Test",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"password\":\"123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/reset-password?passwordToken=",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"reset-password"
+							],
+							"query": [
+								{
+									"key": "passwordToken",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogIn_user_after_reset_password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"ika\",\r\n\"password\":\"123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

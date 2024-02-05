@@ -1,0 +1,22 @@
+<!-- SPINNER -->
+<div class="absolute pt-24 left-1/2 llg:pt-5" id="spinner"></div>
+
+<div *ngFor="let tweet of tweets">
+    <app-tweet [tweet] = "tweet" [isLogged]="isLogged" (delete)="deleteElement(tweet)" (bookmark)="removeElement(tweet)"></app-tweet>
+</div>
+
+<!-- SHOW NOTIFICATIONS BUTTON -->
+<button *ngIf="canMore"
+  (click)="loadElements()"
+  class="hidden w-full py-4 text-lg font-semibold border-b llg:block border-gray-9 dark:bg-black-0 hover:bg-gray-7 dark:border-black-5 dark:hover:bg-black-6 text-primary">
+  Show More
+</button>
+
+<!-- SHOW NOTIFICATIONS BUTTON - MOBILE -->
+<div *ngIf="canMore" class="sticky flex justify-center llg:hidden">
+  <button
+      (click)="loadElements()"
+      class="fixed px-5 py-3 text-sm font-semibold transition cursor-pointer top-[5.4rem] llg:hidden hover:scale-110 rounded-3xl text-white-0 bg-primary">
+      Show More
+  </button>
+</div>

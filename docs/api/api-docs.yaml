@@ -1,0 +1,1451 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8443
+  description: Generated server url
+paths:
+  /api/verify/{id}:
+    put:
+      tags:
+      - admin-dashboard-rest-controller
+      summary: "If the user is a admin, he can verify another user according to his\
+        \ ID"
+      operationId: verify
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: User ID not found
+        "200":
+          description: User Banned
+          content:
+            application/json: {}
+  /api/unverify/{id}:
+    put:
+      tags:
+      - admin-dashboard-rest-controller
+      summary: "If the user is a admin, he can unverify another user according to\
+        \ his ID"
+      operationId: unverify
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: User ID not found
+        "200":
+          description: User Banned
+          content:
+            application/json: {}
+  /api/unban/{id}:
+    put:
+      tags:
+      - admin-dashboard-rest-controller
+      summary: "If the user is a admin, he can unban another user according to his\
+        \ ID"
+      operationId: unban
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: User ID not found
+        "200":
+          description: User Banned
+          content:
+            application/json: {}
+  /api/tweet/retweet/{id}:
+    put:
+      tags:
+      - rest-tweet-controller
+      summary: Give or remove retweet of a tweet
+      operationId: toggleRetweet
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "202":
+          description: Retweet removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+        "404":
+          description: Tweet Not Found
+        "200":
+          description: Retweet given
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+  /api/tweet/like/{id}:
+    put:
+      tags:
+      - rest-tweet-controller
+      summary: Give or remove like of a tweet
+      operationId: toggleLike
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Like given
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+        "404":
+          description: Tweet Not Found
+        "202":
+          description: Like removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+  /api/tweet/bookmark/{id}:
+    put:
+      tags:
+      - rest-tweet-controller
+      summary: Add or remove a tweet from the bookmark list of the current user
+      operationId: toggleBookmark
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Bookmarked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+        "404":
+          description: Tweet Not Found
+        "202":
+          description: Bookmark Removed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+  /api/reset-password:
+    put:
+      tags:
+      - reset-password-rest-controller
+      summary: Change the user's password for a new one
+      operationId: processResetPassword
+      parameters:
+      - name: passwordToken
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        "200":
+          description: Password has been reset
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation'
+        "404":
+          description: Token not found
+  /api/profile/updateProfilePicture/{id}:
+    put:
+      tags:
+      - rest-profile-controller
+      summary: Update the profile pic associated to a user
+      operationId: updateProfilePic
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Profile pic updated
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: User not found
+  /api/profile/updateProfileBanner/{id}:
+    put:
+      tags:
+      - rest-profile-controller
+      summary: Update the profile banner associated to a user
+      operationId: updateProfileBanner
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: Profile banner updated
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/profile/updateNickname/{id}:
+    put:
+      tags:
+      - rest-profile-controller
+      summary: Update the nickname associated to a user
+      operationId: updateNickname
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: nickname
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Nickname updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basic_Basic'
+        "404":
+          description: User not found
+  /api/profile/updateBiography/{id}:
+    put:
+      tags:
+      - rest-profile-controller
+      summary: Update the biography associated to a user
+      operationId: updateBiography
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: biography
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: Biography updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile_Basic'
+  /api/profile/toggleFollow/{id}:
+    put:
+      tags:
+      - rest-profile-controller
+      summary: Follow or unfollow a user
+      operationId: toggleFollow
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "202":
+          description: User unfollowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile_Basic'
+        "404":
+          description: User not found
+        "200":
+          description: User followed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile_Basic'
+  /api/ban/{id}:
+    put:
+      tags:
+      - admin-dashboard-rest-controller
+      summary: "If the user is a admin, he can ban another user according to his ID"
+      operationId: ban
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: User ID not found
+        "200":
+          description: User Banned
+          content:
+            application/json: {}
+  /api/tweets/reply-tweet/{idTweetReplied}:
+    post:
+      tags:
+      - rest-tweet-controller
+      summary: Post a new tweet by the current user replying a tweet
+      operationId: postTweet
+      parameters:
+      - name: text
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: files
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: binary
+      - name: idTweetReplied
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Tweet Not Found
+        "201":
+          description: Comment Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tweet_Basic'
+  /api/tweets/new-tweet:
+    post:
+      tags:
+      - rest-tweet-controller
+      summary: Post a new tweet by the current user
+      operationId: postTweet_1
+      parameters:
+      - name: text
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: files
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            format: binary
+      responses:
+        "201":
+          description: Tweet Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tweet_Basic'
+  /api/signup:
+    post:
+      tags:
+      - user-sign-up-rest-controller
+      summary: Redirect the user to the signUp view
+      operationId: signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisteredRequest'
+        required: true
+      responses:
+        "200":
+          description: Registration successful
+          content:
+            application/json: {}
+        "400":
+          description: Invalid request
+  /api/refresh:
+    post:
+      tags:
+      - login-rest-controller
+      summary: Refresh the content of a page
+      operationId: refreshToken
+      parameters:
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Page has been successfully refreshed
+          content:
+            application/json:
+              schema:
+                type: object
+        "404":
+          description: URL not found
+  /api/notifications/new-notification:
+    post:
+      tags:
+      - rest-notification-controller
+      summary: Post a new notification to a user
+      operationId: postNotification
+      parameters:
+      - name: idTweet
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idOwner
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: Notification Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification_Basic'
+        "400":
+          description: Cannot create the notification
+        "202":
+          description: The user notifies himself
+  /api/logout:
+    post:
+      tags:
+      - login-rest-controller
+      summary: Log a user out of the application
+      operationId: logOut
+      responses:
+        "200":
+          description: Log Out successful
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          description: invalid request
+  /api/login:
+    post:
+      tags:
+      - login-rest-controller
+      summary: Check the credentials of a user and let them in if they are correct
+      operationId: login
+      parameters:
+      - name: accessToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "400":
+          description: invalid credentials
+        "200":
+          description: Log In successful
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/forgot-password:
+    post:
+      tags:
+      - reset-password-rest-controller
+      summary: Send a mail to reset a user's password in case it was forgotten
+      operationId: processForgotPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        "404":
+          description: Mail not found
+        "200":
+          description: Link successfully send
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation'
+  /api/verify:
+    get:
+      tags:
+      - user-sign-up-rest-controller
+      summary: Check the verification code to create an account
+      operationId: verifyUser
+      parameters:
+      - name: code
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Account verified
+          content:
+            application/json:
+              schema:
+                type: object
+        "400":
+          description: invalid Token
+  /api/tweets:
+    get:
+      tags:
+      - rest-tweet-controller
+      summary: Get some of the tweets owned by the followed users of the current user
+      operationId: getTweetsForAUser
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Tweets obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+        "404":
+          description: No tweets found for current user
+  /api/statistics:
+    get:
+      tags:
+      - admin-dashboard-rest-controller
+      summary: "If the user is a admin, he can get the statistics of new accounts\
+        \ created in the last 5 days whit new accounts"
+      operationId: getNewAccountStatistics
+      responses:
+        "403":
+          description: No permission
+        "200":
+          description: Statistics shown
+          content:
+            application/json: {}
+  /api/search/profiles/{keyword}:
+    get:
+      tags:
+      - search-rest-controller
+      summary: Find profiles which contains the keyword in their username
+      operationId: SearchProfiles
+      parameters:
+      - name: keyword
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: No profiles found that match the keyword
+        "200":
+          description: Profiles Found
+          content:
+            application/json: {}
+  /api/search/hashtags/{keyword}:
+    get:
+      tags:
+      - search-rest-controller
+      summary: Find Hashtags which contains the keyword in their username
+      operationId: SearchHashtags
+      parameters:
+      - name: keyword
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Profiles Found
+          content:
+            application/json: {}
+        "404":
+          description: No hashtags found that match the keyword
+  /api/profile/{username}:
+    get:
+      tags:
+      - rest-profile-controller
+      summary: Get a User
+      operationId: getUserByUsername
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basic_Basic'
+  /api/profile/{id}/tweets:
+    get:
+      tags:
+      - rest-tweet-controller
+      summary: Get some of the tweets written by the current user
+      operationId: getProfileTweets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Tweets obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+        "404":
+          description: Tweets not found
+        "202":
+          description: User not found
+  /api/profile/followers/{username}:
+    get:
+      tags:
+      - rest-profile-controller
+      summary: Get some followers users of a User
+      operationId: getFollowers
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: Followed Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basic_Basic'
+  /api/profile/followed/{username}:
+    get:
+      tags:
+      - rest-profile-controller
+      summary: Get some followed users of a User
+      operationId: getFollowed
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: Followed Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basic_Basic'
+  /api/notifications/more-notifications:
+    get:
+      tags:
+      - rest-notification-controller
+      summary: Get some of the notification of the current user
+      operationId: getSomeNotifications
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Notifications obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification_Basic'
+        "202":
+          description: Notifications not found
+  /api/notifications/more-mentions:
+    get:
+      tags:
+      - rest-notification-controller
+      summary: Get some of the mentions of the current user
+      operationId: getSomeMentions
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "202":
+          description: Mentions not found
+        "200":
+          description: Mentions obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification_Basic'
+  /api/images/{id}/tweet-image4:
+    get:
+      tags:
+      - rest-image-controller
+      summary: Get the fourth media associated to a tweet
+      operationId: downloadTweetImage4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "202":
+          description: Fourth media not found
+        "200":
+          description: Fourth media obtained
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/images/{id}/tweet-image3:
+    get:
+      tags:
+      - rest-image-controller
+      summary: Get the third media associated to a tweet
+      operationId: downloadTweetImage3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "202":
+          description: Third media not found
+        "200":
+          description: Third media obtained
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/images/{id}/tweet-image2:
+    get:
+      tags:
+      - rest-image-controller
+      summary: Get the second media associated to a tweet
+      operationId: downloadTweetImage2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Second media obtained
+          content:
+            application/json:
+              schema:
+                type: object
+        "202":
+          description: Second media not found
+  /api/images/{id}/tweet-image1:
+    get:
+      tags:
+      - rest-image-controller
+      summary: Get the first media associated to a tweet
+      operationId: downloadTweetImage1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "202":
+          description: First media not found
+        "200":
+          description: First media obtained
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/images/{id}/profile-pic:
+    get:
+      tags:
+      - rest-image-controller
+      summary: Get the profile pic associated to a user
+      operationId: downloadProfilePic
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Profile pic obtained
+          content:
+            application/json:
+              schema:
+                type: object
+        "202":
+          description: Profile pic not found
+  /api/images/{id}/banner-pic:
+    get:
+      tags:
+      - rest-image-controller
+      summary: Get the banner pic associated to a user
+      operationId: downloadBannerPic
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Banner pic obtained
+          content:
+            application/json:
+              schema:
+                type: object
+        "202":
+          description: Banner pic not found
+  /api/hashtags/trends:
+    get:
+      tags:
+      - rest-hashtag-controller
+      summary: Get some of the current trends
+      operationId: getSomeTrends
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Trends obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trend'
+        "202":
+          description: Trends not found
+  /api/hashtags/explore/{hashtag}:
+    get:
+      tags:
+      - rest-hashtag-controller
+      summary: Get some tweets associated to a hashtag
+      operationId: getSomeTweetsAssociatedToAHashtag
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: hashtag
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Tweets obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+        "202":
+          description: Tweets not found
+  /api/bookmarks:
+    get:
+      tags:
+      - rest-tweet-controller
+      summary: Get some of the bookmarks of the current user
+      operationId: getTweetsForBookmarks
+      parameters:
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: Bookmarks obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TweetInformation_Basic'
+        "202":
+          description: Bookmarks list empty
+  /api/tweet/delete/{id}:
+    delete:
+      tags:
+      - rest-tweet-controller
+      summary: Delete a tweet of the current user
+      operationId: deleteTweet
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Tweet Not Found
+        "201":
+          description: Tweet Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tweet_Basic'
+        "403":
+          description: Forbidden action
+  /api/notifications/delete-notification:
+    delete:
+      tags:
+      - rest-notification-controller
+      summary: Deletes a notification to a user
+      operationId: deleteNotification
+      parameters:
+      - name: idTweet
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: Notification Deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification_Basic'
+        "400":
+          description: Cannot delete the notification
+components:
+  schemas:
+    TweetInformation_Basic:
+      type: object
+      properties:
+        numComments:
+          type: integer
+          format: int64
+        numRetweets:
+          type: integer
+          format: int64
+        numLikes:
+          type: integer
+          format: int64
+        colorLike:
+          type: string
+        colorRetweet:
+          type: string
+        colorBookmark:
+          type: string
+        isAuthorised:
+          type: boolean
+        urlToProfilePic:
+          type: string
+        urlToMedia1:
+          type: string
+        urlToMedia2:
+          type: string
+        urlToMedia3:
+          type: string
+        urlToMedia4:
+          type: string
+        tweet:
+          $ref: '#/components/schemas/Tweet_Basic'
+        authorised:
+          type: boolean
+    Tweet_Basic:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/User_Basic'
+        publishDate:
+          type: string
+          format: date-time
+        likes:
+          type: array
+          items:
+            $ref: '#/components/schemas/User_Basic'
+        retweets:
+          type: array
+          items:
+            $ref: '#/components/schemas/User_Basic'
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tweet_Basic'
+        text:
+          type: string
+        media1:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        media2:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        media3:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        media4:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+    User_Basic:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        email:
+          type: string
+        nickname:
+          type: string
+        password:
+          type: string
+        profilePicture:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        role:
+          type: string
+          enum:
+          - ANONYMOUS
+          - USER
+          - ADMIN
+        followers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User_Basic'
+        followed:
+          type: array
+          items:
+            $ref: '#/components/schemas/User_Basic'
+        bookmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tweet_Basic'
+        joinDate:
+          type: string
+          format: date
+        type:
+          type: string
+        verificationCode:
+          type: string
+        resetPasswordToken:
+          type: string
+        loggedIn:
+          type: boolean
+        enabled:
+          type: boolean
+        followedNumber:
+          type: integer
+          format: int32
+        followersNumber:
+          type: integer
+          format: int32
+        images:
+          type: array
+          writeOnly: true
+          items:
+            type: string
+    ResetPasswordRequest:
+      type: object
+      properties:
+        password:
+          type: string
+    Tweet:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/User'
+        publishDate:
+          type: string
+          format: date-time
+        likes:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        retweets:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tweet'
+        text:
+          type: string
+        media1:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        media2:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        media3:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        media4:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+    TweetInformation:
+      type: object
+      properties:
+        numComments:
+          type: integer
+          format: int64
+        numRetweets:
+          type: integer
+          format: int64
+        numLikes:
+          type: integer
+          format: int64
+        colorLike:
+          type: string
+        colorRetweet:
+          type: string
+        colorBookmark:
+          type: string
+        isAuthorised:
+          type: boolean
+        urlToProfilePic:
+          type: string
+        urlToMedia1:
+          type: string
+        urlToMedia2:
+          type: string
+        urlToMedia3:
+          type: string
+        urlToMedia4:
+          type: string
+        tweet:
+          $ref: '#/components/schemas/Tweet'
+        authorised:
+          type: boolean
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        email:
+          type: string
+        nickname:
+          type: string
+        biography:
+          type: string
+        password:
+          type: string
+        profilePicture:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        profileBanner:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        role:
+          type: string
+          enum:
+          - ANONYMOUS
+          - USER
+          - ADMIN
+        followers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        followed:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        bookmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tweet'
+        joinDate:
+          type: string
+          format: date
+        type:
+          type: string
+        verificationCode:
+          type: string
+        resetPasswordToken:
+          type: string
+        loggedIn:
+          type: boolean
+        enabled:
+          type: boolean
+        followedNumber:
+          type: integer
+          format: int32
+        followersNumber:
+          type: integer
+          format: int32
+        images:
+          type: array
+          writeOnly: true
+          items:
+            type: string
+    Basic_Basic:
+      type: object
+    Profile_Basic:
+      type: object
+    RegisteredRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    Notification_Basic:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        tweetTrigger:
+          $ref: '#/components/schemas/Tweet_Basic'
+        userToNotify:
+          $ref: '#/components/schemas/User_Basic'
+        userWhoNotifies:
+          $ref: '#/components/schemas/User_Basic'
+        date:
+          type: string
+          format: date-time
+        type:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    ForgotPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+    Trend:
+      type: object
+      properties:
+        hashtag:
+          type: string
+        numTweets:
+          type: integer
+          format: int32

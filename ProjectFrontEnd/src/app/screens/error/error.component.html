@@ -1,0 +1,47 @@
+<div class="grid min-h-screen xlsm:place-content-center dark:bg-blue-4 bg-gray-11">
+    <!-- FRAME -->
+    <div
+        class="relative flex flex-col justify-center max-w-xl gap-16 px-6 border border-gray-3 dark:border-transparent xlsm:px-24 xlsm:pb-14 xlsm:pt-7 bg-white-0 dark:bg-black-0 rounded-2xl">
+        <!-- THEME SWITCHER -->
+        <app-theme-switcher-button class="absolute top-5 left-5"></app-theme-switcher-button>
+
+        <!-- HEADER -->
+        <header class="flex items-center justify-center mt-24">
+            <!-- BRAND -->
+            <a class="transition rounded-full cursor-pointer hover:scale-150" href="/">
+                <svg viewBox="0 0 24 24" aria-label="Twitter" role="img" class="w-14 fill-primary">
+                    <g>
+                        <path
+                            d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z">
+                        </path>
+                    </g>
+                </svg>
+            </a>
+        </header>
+
+        <!-- MESSAGE -->
+        <article class="flex flex-col gap-2">
+            <h1 class="text-3xl font-bold text-center dark:text-white-0 text-black-0">
+                Error
+            </h1>
+            <h2 class="text-lg font-medium text-center dark:text-gray-2 text-black-0">
+                Something went wrong, but don't worry, it's not your fault. Let's try it again.
+            </h2>
+        </article>
+
+        <!-- ACTIONS -->
+        <div class="flex flex-col gap-4">
+            <button
+                class="px-10 py-3 text-lg font-bold text-center transition rounded-full cursor-pointer text-white-0 bg-primary hover:scale-110"
+                (click)="refresh()">
+                Refresh
+            </button>
+
+            <button
+                class="px-10 py-3 text-lg font-bold text-center transition rounded-full cursor-pointer text-white-0 bg-red-3 hover:scale-110"
+                (click)="logOut()">
+                Log out
+            </button>
+        </div>
+    </div>
+</div>

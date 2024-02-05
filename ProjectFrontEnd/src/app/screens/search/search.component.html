@@ -1,0 +1,61 @@
+<!--{{> left-bar}}-->
+
+<!-- CONTENT - FRAME -->
+<main
+        class="relative w-screen min-h-screen llg:max-w-[700px] border-l border-r border-transparent llg:border-gray-9 llg:dark:border-black-5">
+  <!-- HEADER -->
+  <header class="sticky top-0 left-0 border-b backdrop-blur-md border-gray-9 dark:border-black-5">
+    <div class="flex items-center justify-between py-2 pl-6 pr-3">
+      <!-- TITLE -->
+      <h1 id="screenTitle" class="hidden text-xl font-bold xlsm:block dark:text-gray-3 text-black-1">
+        Explore
+      </h1>
+      
+
+      <!-- SEARCH BAR -->
+      <form class="relative" action="/search" method = "get">
+        <div class="absolute inset-y-0 flex pointer-events-none left-5">
+            <svg aria-hidden="true" class="w-6 text-gray-5" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+        </div>
+
+        <input #keyword type="text" id="keyword" name="keyword"
+            class="w-full py-3 text-lg rounded-full pl-14 text-black-0 dark:text-gray-4 dark:bg-black-2 bg-gray-6 dark:placeholder-gray-5 placeholder-text-lg"
+            placeholder="Search on Twitter" required (keyup.enter)="getAndLoadData(keyword.value)">
+    </form>
+
+      <!-- THEME SWITCHER -->
+      <app-theme-switcher-button></app-theme-switcher-button>
+    </div>
+  </header>
+
+  <!-- USERS -->
+  <div *ngIf="!showTweets" id="user-container">
+    <div  *ngFor="let user of userInformationList;">
+      <app-user [userInformation]="user">
+      </app-user>
+    </div>
+  </div>
+
+  <div *ngIf="!showTweets" id="trend-container">
+    <div *ngFor="let trend of trends; let i = index">
+      <app-trend [index]="i" [trend]="trend" (showHashtag)="showHashtag($event)"></app-trend>
+    </div>
+  </div>
+
+  <div *ngIf="showTweets">
+    <app-tweet-list [typeElement]="'Hashtag'" [hashtag]="hashtag"></app-tweet-list>
+  </div>
+
+
+  <!-- SPACE -->
+  <div class="p-10 bg-transparent">
+  </div>
+
+  <!--{{> mobile-bar}}-->
+</main>
+
+<!--{{> right-bar}}-->

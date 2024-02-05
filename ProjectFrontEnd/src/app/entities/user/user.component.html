@@ -1,0 +1,41 @@
+<div [ngClass]="{'border-b border-gray-9 dark:bg-black-0 dark:border-black-5':!isExplorePage}" class="cursor-pointer">
+  <div class="flex items-center justify-between w-full gap-4 px-3 py-4 xlsm:px-5 hover:bg-gray-7 dark:hover:bg-black-6">
+  <div [routerLink]="['/profile', username]"
+    class="flex items-center gap-5 transition rounded-full w-fit group-hover:scale-110 group-hover:bg-gray-3 dark:group-hover:bg-gray-13 group-focus-within:bg-gray-3 dark:group-focus-within:bg-gray-13 group-focus-within:scale-110">
+    <figure class="w-11">
+      <img class="rounded-full" [src]="srcImg" alt="profile-pic">
+    </figure>
+
+    <article class="flex flex-col items-start justify-between">
+      <section class="flex items-center gap-2">
+        <h2 [routerLink]="['/profile', username]" class="text-xl font-semibold dark:text-white-0">{{nickname}}</h2>
+        <div *ngIf="!(userInformation.user.type === 'PUBLIC')" class="w-5">
+          <svg attr.viewBox="{{viewBox}}" [ngClass]="{'fill-red-3':userInformation.user.type === 'BANNED','fill-primary':userInformation.user.type === 'VERIFIED'}">
+              <g>
+                  <path attr.d="{{svg}}"/>
+              </g>
+          </svg>
+        </div>
+      </section>
+
+      <h3 [routerLink]="['/profile', username]" class="text-sm font-semibold dark:font-normal text-gray-2">
+        @{{username}}</h3>
+    </article>
+
+  </div>
+
+  <div *ngIf="typeButton; else goToProfile">
+    <button (click)="doAction(typeButton)"
+      [ngClass]="{'bg-primary': blue, 'bg-red-3': !blue}"
+      class="px-3 py-2 text-sm font-semibold text-center transition scale-90 rounded-full cursor-pointer xlsm:scale-100 text-white-0 hover:scale-110">
+      {{typeButton}}
+    </button>
+  </div>
+  <ng-template #goToProfile>
+    <a [routerLink]="['/profile', username]"
+      class="px-3 py-2 text-sm font-semibold text-center transition scale-90 rounded-full cursor-pointer xlsm:scale-100 text-white-0 bg-primary hover:scale-110">
+      Go To Profile
+    </a>
+  </ng-template>
+  </div>
+</div>

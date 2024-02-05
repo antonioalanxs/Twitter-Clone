@@ -1,0 +1,55 @@
+<!-- RIGHT BAR -->
+<aside class="hidden l2xl:block w-80">
+    <div class="sticky top-0 right-0 flex flex-col gap-6 mt-4">
+        <form class="relative" action="/search" method = "get">
+            <div class="absolute inset-y-0 flex pointer-events-none left-5">
+                <svg aria-hidden="true" class="w-6 text-gray-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+
+            {{^isExplorePage}}
+            <input type="text" id="keyword" name="keyword"
+                class="w-full p-4 text-lg rounded-full pl-14 text-black-0 dark:text-gray-4 dark:bg-black-2 bg-gray-6 dark:placeholder-gray-5 dark:text-white placeholder-text-lg"
+                placeholder="Search on Twitter" required>
+            {{/isExplorePage}}
+        </form>
+
+        {{^ isExplorePage}}
+        <div class="flex flex-col justify-start pt-3 h-fit bg-gray-6 rounded-3xl dark:bg-black-2 bg-gray-14">
+            <h2 class="px-5 pb-3 text-2xl font-bold dark:text-gray-3 text-black-0">
+                What's happening
+            </h2>
+
+            {{^ isExplorePage}}
+            
+            {{> explore_element}}
+
+            <!-- SHOW MORE -->
+            <a class="p-4 group" href="/explore">
+                <div
+                    class="px-5 py-2 text-sm font-semibold transition rounded-3xl group-hover:scale-110 w-fit text-white-0 bg-primary">
+                    Show more
+                </div>
+            </a>
+            {{/isExplorePage}}
+        </div>
+        {{/ isExplorePage}}
+
+        {{# isLogged}}
+        {{# isExplorePage}}
+        <div class="flex flex-col justify-start pt-3 h-fit bg-gray-6 rounded-3xl dark:bg-black-2 bg-gray-14">
+            <h2 class="px-5 pb-3 text-2xl font-bold dark:text-gray-3 text-black-0">
+                Recommended Profiles
+            </h2>
+            {{#usersToFollow}}
+                {{>user-element}}
+            {{/usersToFollow}}
+        </div>
+        {{/ isExplorePage}}
+        {{/ isLogged}}
+    </div>
+</aside>
+{{> footer}}

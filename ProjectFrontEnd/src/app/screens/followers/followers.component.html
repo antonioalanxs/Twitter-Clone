@@ -1,0 +1,51 @@
+<div
+  class="relative w-screen min-h-screen llg:max-w-[700px] border-l border-r border-transparent llg:border-gray-9 llg:dark:border-black-5">
+  <!-- HEADER -->
+  <header class="sticky top-0 left-0 border-b backdrop-blur-md border-gray-9 dark:border-black-5">
+    <div class="flex items-center justify-between py-2 pl-6 pr-3">
+      <div class="flex gap-4">
+        <!-- GO BACK -->
+        <a class="cursor-pointer group" [routerLink]="['/profile/', username]">
+          <svg
+            class="transition rounded-full w-7 dark:fill-white-0 fill-gray-4 group-hover:fill-primary group-hover:bg-blue-1 group-dark:hover:bg-blue-0"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <g>
+              <path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z">
+              </path>
+            </g>
+          </svg>
+        </a>
+
+        <!-- TITLE -->
+        <section class="flex items-center gap-2 cursor-pointer">
+          <h2 class="text-xl font-semibold dark:text-white-0">{{username}}</h2>
+        </section>
+      </div>
+
+      <!-- THEME SWITCHER -->
+      <app-theme-switcher-button></app-theme-switcher-button>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navBar" class="grid items-center justify-center grid-cols-2 text-center dark:text-gray-5 text-gray-4">
+      <button id="following-tab" (click)="goToFollowed()"
+        class="py-4 font-bold border-b-4 cursor-pointer border-primary dark:text-white-0 text-black-0 dark:hover:bg-gray-1 hover:bg-gray-3">
+        Following
+      </button>
+
+      <button id="followers-tab" (click)="goToFollowers()"
+        class="py-4 font-semibold border-b-4 border-transparent cursor-pointer border-p-2 dark:hover:bg-gray-1 hover:bg-gray-3 dark:text-gray-5">
+        Followers
+      </button>
+    </nav>
+  </header>
+
+  <!-- PEOPLE RELATED -->
+  <div>
+    <!-- FOLLOWING AND FOLLOWERS -->
+    <div id="follow-container" *ngFor="let user of users">
+      <app-user [userInformation]="user"></app-user>
+    </div>
+  </div>
+
+</div>

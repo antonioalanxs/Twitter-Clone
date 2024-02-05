@@ -1,0 +1,79 @@
+<!-- CONTENT - FRAME -->
+<div
+  class="w-screen min-h-screen llg:max-w-[700px] border-l border-r border-transparent llg:border-gray-9 llg:dark:border-black-5">
+  <!-- HEADER -->
+  <header class="sticky top-0 left-0 border-b backdrop-blur-md border-gray-9 dark:border-black-5">
+    <div class="flex items-center justify-between py-2 pl-6 pr-3">
+      <div class="flex gap-4">
+        <!-- GO BACK -->
+        <a class="cursor-pointer group" [routerLink]="['/home']">
+          <svg
+            class="transition rounded-full w-7 dark:fill-white-0 fill-gray-4 group-hover:fill-primary group-hover:bg-blue-1 group-dark:hover:bg-blue-0"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <g>
+              <path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z">
+              </path>
+            </g>
+          </svg>
+        </a>
+
+        <!-- TITLE -->
+        <h1 id="screenTitle" class="text-xl font-bold dark:text-gray-3 text-black-1">
+          Dashboard
+        </h1>
+      </div>
+
+      <!-- THEME SWITCHER -->
+      <app-theme-switcher-button></app-theme-switcher-button>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navBar" class="grid items-center justify-center grid-cols-2 text-center dark:text-gray-5 text-gray-4">
+      <!-- VERIFICATION REQUESTS -->
+      <button id="requests-tab"
+        (click)="showPage('requests-tab', ['verificated-tab', 'banned-tab', 'stats-tab'], false)"
+        class="py-4 font-bold border-b-4 cursor-pointer border-primary dark:text-white-0 text-black-0 dark:hover:bg-gray-1 hover:bg-gray-3">
+        Requests
+      </button>
+      <!-- VERIFIED USERS -->
+      <button id="verificated-tab"
+        (click)="showPage('verificated-tab', ['requests-tab', 'banned-tab', 'stats-tab'], false)"
+        class="py-4 font-semibold border-b-4 border-transparent cursor-pointer border-p-2 dark:hover:bg-gray-1 hover:bg-gray-3 dark:text-gray-5">
+        Verificated users
+      </button>
+      <!-- BANNED USERS -->
+      <button id="banned-tab" (click)="showPage('banned-tab', ['verificated-tab', 'requests-tab', 'stats-tab'], false)"
+        class="py-4 font-semibold border-b-4 border-transparent cursor-pointer border-p-2 dark:hover:bg-gray-1 hover:bg-gray-3 dark:text-gray-5">
+        Banned users
+      </button>
+      <!-- STATS -->
+      <button id="stats-tab" (click)="showPage('stats-tab', ['verificated-tab', 'banned-tab', 'requests-tab'], true)"
+        class="py-4 font-semibold border-b-4 border-transparent cursor-pointer border-p-2 dark:hover:bg-gray-1 hover:bg-gray-3 dark:text-gray-5">
+        Stats
+      </button>
+    </nav>
+  </header>
+
+  <!-- OPTIONS -->
+  <div *ngIf="isAdmin">
+    <div *ngIf="isStadistics; else showUsers">
+      <!-- STATS -->
+      <div id="stats">
+        <ngx-charts-bar-vertical [view]="view" [results]="results" [gradient]="gradient" [xAxis]="showXAxis"
+          [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [xAxisLabel]="xAxisLabel"
+          [showYAxisLabel]="showYAxisLabel" [yAxisLabel]="yAxisLabel"
+          class="fill-black dark:fill-white"></ngx-charts-bar-vertical>
+
+      </div>
+
+    </div>
+    <ng-template #showUsers>
+      <div *ngFor="let user of users">
+        <app-user [userInformation]="user" [typeButton]="typeButton" (delete)="deleteElement(user)"></app-user>
+      </div>
+    </ng-template>
+
+
+  </div>
+
+</div>

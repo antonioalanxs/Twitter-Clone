@@ -1,0 +1,67 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let chart = new Chart(document.getElementById("canvas").getContext("2d"),{
+        type:"bar",
+        data:{
+            labels:[],
+            datasets:[{
+                label:"New Users",
+                data:[],
+                backgroundColor:[
+                    '#1a8cd8',
+                    '#1a8cd8',
+                    '#1a8cd8',
+                    '#1a8cd8'
+                ]
+            }]
+        },
+        options:{
+            scales:{
+                yAxes:[{
+                    ticks:{
+                        beginAtZeros:true
+                    }
+                }]
+            }
+        }
+
+    });
+    async function loadStatics(amount,date){
+        let statsDiv = document.getElementById("canvas").getContext("2d");
+        chart.destroy()
+        let amounts = []
+        let dates = []
+        let a = amount.split(',')
+        let b = date.split(',')
+        for (i = 0; i<a.length;i++){
+            amounts.push(a[i])
+            dates.push(b[i])
+        }
+        chart = new Chart(statsDiv,{
+            type:"bar",
+            data:{
+                labels:dates,
+                datasets:[{
+                    label:"New Users",
+                    data:amounts,
+                    backgroundColor:[
+                        '#1a8cd8',
+                        '#1a8cd8',
+                        '#1a8cd8',
+                        '#1a8cd8'
+                    ]
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                        ticks:{
+                            beginAtZero:true,
+                        }
+                    }]
+                }
+            }
+
+        })
+    }
+</script>

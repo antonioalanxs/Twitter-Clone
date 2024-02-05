@@ -1,0 +1,46 @@
+<div
+  class="w-screen min-h-screen llg:max-w-[700px] border-l border-r border-transparent llg:border-gray-9 llg:dark:border-black-5">
+  <header class="sticky top-0 left-0 border-b backdrop-blur-md border-gray-9 dark:border-black-5">
+    <div class="flex items-center justify-between py-2 pl-6 pr-3">
+      <div class="flex items-center gap-4">
+        <!-- GO BACK -->
+        <button class="cursor-pointer group" [routerLink]="['/home']">
+          <svg
+            class="transition rounded-full w-7 dark:fill-white-0 fill-gray-4 group-hover:fill-primary group-hover:bg-blue-1 group-dark:hover:bg-blue-0"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <g>
+              <path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z">
+              </path>
+            </g>
+          </svg>
+        </button>
+
+        <!-- TITLE -->
+        <h1 id="screenTitle" class="text-xl font-bold dark:text-gray-3 text-black-1">
+          Notifications
+        </h1>
+      </div>
+
+      <app-theme-switcher-button></app-theme-switcher-button>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navBar" class="grid items-center justify-center grid-cols-2 text-center dark:text-gray-5 text-gray-4">
+      <button id="all-tab" (click)="showPage('all-tab', ['mentions-tab']);"
+        class="py-4 font-bold border-b-4 cursor-pointer border-primary dark:text-white-0 text-black-0 dark:hover:bg-gray-1 hover:bg-gray-3">
+        All
+      </button>
+
+      <button id="mentions-tab" (click)="showPage('mentions-tab', ['all-tab'])"
+        class="py-4 font-semibold border-b-4 border-transparent cursor-pointer border-p-2 dark:hover:bg-gray-1 hover:bg-gray-3 dark:text-gray-5">
+        Mentions
+      </button>
+    </nav>
+  </header>
+
+
+  <app-notification-list *ngIf="tabSelected == 'all'" tab='all'></app-notification-list>
+
+  <app-notification-list *ngIf="tabSelected == 'mentions'" tab='mentions'></app-notification-list>
+
+</div>

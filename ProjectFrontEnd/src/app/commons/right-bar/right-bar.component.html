@@ -1,0 +1,33 @@
+<!-- RIGHT BAR -->
+<aside class="hidden mt-4 l2xl:block w-80">
+    <div *ngIf="!this.isExplorePage && finish" class="flex flex-col gap-5">
+        <app-searcher></app-searcher>
+        <div class="flex flex-col justify-start pt-3 h-fit bg-gray-6 rounded-3xl dark:bg-black-2 bg-gray-14">
+            <h2 class="px-5 pb-3 text-2xl font-bold dark:text-gray-3 text-black-0">
+                What's happening
+            </h2>
+
+            <div *ngFor="let trend of trends; let i = index">
+                <app-trend [trend]="trend" [index]="i" [routerLink]="['/explore']"></app-trend>
+            </div>
+
+            <!-- SHOW MORE -->
+            <button class="p-4 group" [routerLink]="['/explore']">
+                <div
+                    class="px-5 py-2 text-sm font-semibold transition rounded-3xl group-hover:scale-110 w-fit text-white-0 bg-primary">
+                    Show more
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="showRecommended"
+        class="flex flex-col justify-start pt-3 h-fit bg-gray-6 rounded-3xl dark:bg-black-2 bg-gray-14">
+        <h2 class="px-5 pb-3 text-2xl font-bold dark:text-gray-3 text-black-0">
+            Recommended Profiles
+        </h2>
+        <div *ngFor="let user of recommendedUsers">
+            <app-user [userInformation]="user"></app-user>
+        </div>
+    </div>
+</aside>

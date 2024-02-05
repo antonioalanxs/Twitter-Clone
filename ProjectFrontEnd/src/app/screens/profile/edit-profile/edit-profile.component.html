@@ -1,0 +1,135 @@
+<main class="grid min-h-screen xlsm:place-content-center dark:bg-blue-4 bg-gray-11" *ngIf="user">
+
+  <!-- FRAME -->
+  <div
+    class="relative flex flex-col justify-center max-w-xl gap-8 px-6 border border-gray-3 dark:border-transparent xlsm:px-20 xlsm:pb-14 pt-7 bg-white-0 dark:bg-black-0 rounded-2xl">
+    <!-- GO BACK -->
+    <button class="absolute cursor-pointer group top-[35px] left-8" [routerLink]="['/profile', this.nickname]">
+      <svg
+        class="transition rounded-full w-7 dark:fill-white-0 fill-gray-4 group-hover:fill-primary group-hover:bg-blue-1 group-dark:hover:bg-blue-0"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+        <g>
+          <path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z">
+          </path>
+        </g>
+      </svg>
+    </button>
+
+    <!-- HEADER -->
+    <header class="flex items-center justify-center">
+      <!-- BRAND -->
+      <a class="transition rounded-full cursor-pointer hover:scale-150" [routerLink]="['/']">
+        <svg viewBox="0 0 24 24" aria-label="Twitter" role="img" class="w-11 fill-primary">
+          <g>
+            <path
+              d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z">
+            </path>
+          </g>
+        </svg>
+      </a>
+    </header>
+
+    <!-- THEME SWITCHER -->
+    <app-theme-switcher-button class="absolute top-5 right-5"></app-theme-switcher-button>
+
+    <!-- MESSAGE -->
+    <article class="flex flex-col gap-3">
+      <h1 class="text-3xl font-bold dark:text-white-0 text-black-0">
+        Edit your profile
+      </h1>
+      <h2 class="text-lg font-medium dark:text-gray-2 text-black-0">
+        Treat it with care and transmit who you are and what goes through your head.
+      </h2>
+    </article>
+
+    <div>
+      <!-- FORM -->
+      <form action="/profile/edit-profile" method="post" enctype="multipart/form-data" class="flex flex-col gap-4">
+        <!-- BANNER AND PHOTO -->
+        <div>
+          <!-- BANNER -->
+          <figure class="relative h-40 rounded-t-xl">
+            <img class="object-fill w-full h-full rounded-t-xl" [src]="urlToBannerPic" alt="Banner" id="banner">
+
+            <!-- OPTIONS -->
+            <!-- CHANGE -->
+            <div class="absolute top-2 right-3">
+              <label for="upload-banner"
+                class="block p-3 transition rounded-full cursor-pointer bg-gray-1 hover:scale-110">
+                <svg class="w-6 fill-primary" viewBox="0 0 24 24" aria-hidden="true">
+                  <g>
+                    <path
+                      d="M9.697 3H11v2h-.697l-3 2H5c-.276 0-.5.224-.5.5v11c0 .276.224.5.5.5h14c.276 0 .5-.224.5-.5V10h2v8.5c0 1.381-1.119 2.5-2.5 2.5H5c-1.381 0-2.5-1.119-2.5-2.5v-11C2.5 6.119 3.619 5 5 5h1.697l3-2zM12 10.5c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-4 2c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4zM17 2c0 1.657-1.343 3-3 3v1c1.657 0 3 1.343 3 3h1c0-1.657 1.343-3 3-3V5c-1.657 0-3-1.343-3-3h-1z">
+                    </path>
+                  </g>
+                </svg>
+              </label>
+              <input #banner type="file" name="banner" id="upload-banner" class="absolute w-0">
+            </div>
+          </figure>
+
+          <!-- PHOTO -->
+          <div class="relative flex flex-col gap-3 px-5 bottom-9 border-gray-9 dark:border-black-5">
+            <figure
+              class="relative transition border-[6px] rounded-full cursor-pointer w-28 lmd:w-32 dark:border-black-0 border-white-0">
+              <img class="object-fill w-full h-full rounded-full" [src]="urlToProfilePic" alt="Profile photo">
+
+              <!-- OPTIONS -->
+              <div class="absolute top-6 left-[26px] lmd:top-[35px] lmd:left-[35px]">
+                <label for="upload-photo"
+                  class="block p-3 transition rounded-full cursor-pointer w-fit bg-gray-1 hover:scale-110">
+                  <svg class="w-6 fill-white-0" viewBox="0 0 24 24" aria-hidden="true">
+                    <g>
+                      <path
+                        d="M9.697 3H11v2h-.697l-3 2H5c-.276 0-.5.224-.5.5v11c0 .276.224.5.5.5h14c.276 0 .5-.224.5-.5V10h2v8.5c0 1.381-1.119 2.5-2.5 2.5H5c-1.381 0-2.5-1.119-2.5-2.5v-11C2.5 6.119 3.619 5 5 5h1.697l3-2zM12 10.5c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-4 2c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4zM17 2c0 1.657-1.343 3-3 3v1c1.657 0 3 1.343 3 3h1c0-1.657 1.343-3 3-3V5c-1.657 0-3-1.343-3-3h-1z">
+                      </path>
+                    </g>
+                  </svg>
+                </label>
+                <input #profile type="file" name="profile" id="upload-photo" class="absolute w-0">
+              </div>
+            </figure>
+          </div>
+        </div>
+
+        <!-- NAME AND BIOGRAPHY -->
+        <div class="relative flex flex-col gap-3 bottom-7">
+          <div class="rounded-xl border-primary border-[2.8px] px-3">
+            <label class="block mt-2">
+              <div class="w-full text-lg font-medium text-gray-2">
+                Name
+              </div>
+              <textarea required #nickname
+                class="w-full pb-1 mt-1 text-lg font-medium bg-transparent border-transparent resize-none focus:outline-none focus:ring-0 dark:text-white-0"
+                maxlength="160" rows="1" name="nickname">{{user.nickname}}</textarea>
+            </label>
+          </div>
+
+          <div class="rounded-xl border-primary border-[2.8px] px-3">
+            <label class="block mt-2">
+              <div class="w-full text-lg font-medium text-gray-2">
+                Biography
+              </div>
+              <textarea #biography
+                class="w-full mt-1 text-lg font-medium bg-transparent border-transparent resize-none focus:outline-none focus:ring-0 dark:text-white-0"
+                maxlength="160" rows="3" name="biography">{{user.biography}}</textarea>
+            </label>
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="flex flex-col gap-3 -mt-4">
+          <input (click)="editProfile($event, banner.files, profile.files, nickname.value, biography.value)"
+            class="w-full px-5 py-3 font-bold text-center transition rounded-full cursor-pointer dark:bg-white-0 dark:text-black-0 text-white-0 bg-black-0 hover:scale-110"
+            type="submit" value="Save">
+
+          <a class="px-5 py-3 text-sm font-bold text-center transition bg-transparent border-2 cursor-pointer border-black-0 rounded-3xl dark:border-white-0 dark:text-white-0 text-black-0 hover:scale-110"
+            [routerLink]="['/profile',user.username]">
+            Cancel
+          </a>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

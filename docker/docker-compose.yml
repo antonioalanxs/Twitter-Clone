@@ -1,0 +1,23 @@
+version: "3.9"
+services: 
+  web:
+    image: keyland71/twitter-clone
+    ports:
+      - 8443:8443
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db/twitter
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_MAIL_PASSWORD=ithweyeazmvvtbna
+      - JWT_SECRET=secret
+    depends_on:
+      - db
+    restart: on-failure
+  db:
+    container_name: db
+    image: mysql:8.0
+    environment:
+      - MYSQL_DATABASE=twitter
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - ./mysql:/var/lib/mysql

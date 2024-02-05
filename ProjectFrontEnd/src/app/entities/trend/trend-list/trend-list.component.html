@@ -1,0 +1,21 @@
+<!-- SPINNER -->
+<div id="spinner"></div>
+
+<div *ngFor="let trend of trends; let i = index">
+    <app-trend [index]="i" [trend]="trend" (showHashtag)="showHashtag($event)"></app-trend>
+</div>
+
+<div *ngIf="canMore">
+    <button (click)="loadMoreTrends();"
+        class="hidden w-full py-4 text-lg font-semibold border-b llg:block border-gray-9 dark:bg-black-0 hover:bg-gray-7 dark:border-black-5 dark:hover:bg-black-6 text-primary">
+        Load More
+    </button>
+</div>
+
+<!-- SHOW TRENDS BUTTON - MOBILE -->
+<div *ngIf="canMore" class="sticky flex justify-center">
+    <button (click)="loadMoreTrends();"
+        class="fixed px-5 py-3 text-sm font-semibold transition cursor-pointer top-[5.4rem] llg:hidden hover:scale-110 rounded-3xl text-white-0 bg-primary">
+        Load More
+    </button>
+</div>

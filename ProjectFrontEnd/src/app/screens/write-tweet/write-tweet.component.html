@@ -1,0 +1,101 @@
+<main class="grid min-h-screen xlsm:place-content-center dark:bg-blue-4 bg-gray-11">
+    <!-- FRAME -->
+    <div
+        class="relative flex flex-col justify-center max-w-xl gap-8 px-6 border border-gray-3 dark:border-transparent xlsm:px-20 xlsm:pb-14 xlsm:pt-7 bg-white-0 dark:bg-black-0 rounded-2xl">
+        <!-- GO BACK -->
+        <button class="absolute cursor-pointer group top-[35px] left-8" [routerLink]="['/home']">
+          <svg class="transition rounded-full w-7 dark:fill-white-0 fill-gray-4 group-hover:fill-primary group-hover:bg-blue-1 group-dark:hover:bg-blue-0"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <g>
+              <path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z">
+              </path>
+            </g>
+          </svg>
+        </button>
+
+        <!-- HEADER -->
+        <header class="flex items-center justify-center">
+          <!-- BRAND -->
+          <a class="transition rounded-full cursor-pointer hover:scale-150" [routerLink]="['/home']">
+            <svg viewBox="0 0 24 24" aria-label="Twitter" role="img" class="w-11 fill-primary">
+              <g>
+                <path
+                  d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z">
+                </path>
+              </g>
+            </svg>
+          </a>
+        </header>
+
+        <!-- THEME SWITCHER -->
+        <app-theme-switcher-button class="absolute top-5 right-5"></app-theme-switcher-button>
+
+        <!-- TWEET -->
+        <div *ngIf="tweet; else message" class="flex items-center w-full gap-4 dark:bg-black-0 bg-white-0">
+            <a [routerLink]="['/profile/', tweet.user.username]">
+                <figure class="w-12 h-12 rounded-full hover:bg-black-0">
+                    <img [src]="urlToProfilePic" alt="Profile photo" class="w-full h-full rounded-full hover:opacity-80">
+                </figure>
+            </a>
+
+            <!-- CONTENT -->
+            <div class="flex flex-col flex-1 gap-2">
+                <div class="flex flex-col gap-1">
+                    <!-- PROFILE -->
+                    <a class="flex gap-2" href="#">
+                        <span
+                            class="overflow-hidden font-bold text-ellipsis whitespace-nowrap hover:underline dark:text-white-0">
+                            {{tweet.user.username}}</span>
+                        <span class="overflow-hidden text-ellipsis whitespace-nowrap text-gray-4 hover:underline">
+                            @{{tweet.user.nickname}}
+                        </span>
+                    </a>
+
+                    <!-- TWEET TEXT -->
+                    <p class="overflow-hidden text-sm text-ellipsis text-twitter-dark-gray dark:text-white-0">
+                        {{tweet.text}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MESSAGE -->
+        <ng-template #message>
+            <article class="flex flex-col gap-3">
+                <h1 class="text-3xl font-bold dark:text-white-0 text-black-0">
+                    Write whatever is in your mind
+                </h1>
+                <h2 class="text-lg font-medium dark:text-gray-2 text-black-0">
+                    You have 240 characters to write whatever you want.
+                </h2>
+                <h2 class="text-lg font-medium dark:text-gray-2 text-black-0">
+                    Be respectful, please.
+                </h2>
+            </article>
+        </ng-template>
+
+
+        <form>
+            <div class="flex flex-col gap-3">
+                <textarea required #tweetInfo class="p-5 text-lg bg-transparent border-[2.8px] resize-none rounded-xl border-primary dark:text-white-0"
+                    placeholder="Write your tweet here" maxlength="240" rows="6"></textarea>
+
+                <label class="mb-7">
+                    <span class="sr-only">Choose files to upload</span>
+                    <input #tweetFiles type="file" multiple="multiple" class="w-full text-sm font-semibold text-black-0 file:text-sm file:font-bold file:text-white-0 file:mr-4 file:py-2 file:px-4 file:rounded-full file:bg-primary file:border-transparent dark:text-gray-2" accept=".png, .jpg, .jpeg, .gif"/>
+                </label>
+
+            </div>
+
+            <div class="flex flex-col gap-4">
+                <input type="submit" value="Tweet" (click)="writeTweet($event, tweetInfo.value, tweetFiles.files)" class="w-full px-5 py-3 text-lg font-bold text-center transition rounded-full cursor-pointer text-white-0 bg-primary hover:scale-110"/>
+
+                <a class="px-5 py-3 font-bold text-center transition bg-transparent border-2 cursor-pointer border-black-0 rounded-3xl dark:border-white-0 dark:text-white-0 text-black-0 hover:scale-110"
+                    [routerLink]="'/home'">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</main>

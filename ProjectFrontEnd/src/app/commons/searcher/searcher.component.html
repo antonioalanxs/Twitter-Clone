@@ -1,0 +1,14 @@
+<!-- SEARCH BAR -->
+<form class="relative" action="/search" method="get">
+    <div class="absolute inset-y-0 flex pointer-events-none left-5">
+        <svg aria-hidden="true" class="w-6 text-gray-5" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+    </div>
+
+    <input #keyword type="text" id="keyword" name="keyword"
+        class="w-full py-3 text-lg rounded-full pl-14 text-black-0 dark:text-gray-4 dark:bg-black-2 bg-gray-6 dark:placeholder-gray-5 placeholder-text-lg"
+        placeholder="Search on Twitter" required (keyup.enter)="search(keyword.value)">
+</form>

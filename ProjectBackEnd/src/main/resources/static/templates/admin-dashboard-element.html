@@ -1,0 +1,30 @@
+<!-- FRAME -->
+<div class="border-b cursor-pointer border-gray-9 dark:bg-black-0 dark:border-black-5">
+    <!-- PERSON -->
+    <div class="flex items-center justify-between w-full gap-4 px-3 py-4 xlsm:px-5 hover:bg-gray-7 dark:hover:bg-black-6">
+      <div class="flex items-center gap-4 transition rounded-full w-fit group-hover:scale-110 group-hover:bg-gray-3 dark:group-hover:bg-gray-13 group-focus-within:bg-gray-3 dark:group-focus-within:bg-gray-13 group-focus-within:scale-110">
+
+          <figure class="w-11" onclick="window.location.href='/profile/{{id}}'">
+            <img class="w-full h-full rounded-full" src="users/{{id}}/user-image" alt="Profile photo" onload="loadUserSVG('{{id}}', '{{type}}'); changeText('{{type}}','{{-index}}','{{id}}');">
+          </figure>
+
+          <section class="grid items-center grid-flow-col gap-2 auto-cols-min">
+            <h2 class="overflow-hidden text-xl font-semibold dark:text-white-0 text-ellipsis whitespace-nowrap">
+              <a id="{{id}}userNameSvg" class="flex items-center gap-1 overflow-hidden font-bold hover:underline decoration-1 text-ellipsis whitespace-nowrap"
+                 href="/profile/{{id}}">
+                {{nickname}}
+                <!--svg name-->
+              </a>
+            </h2>
+          </section>
+
+          <h3 class="overflow-hidden font-semibold text-md dark:font-normal text-gray-2 text-ellipsis whitespace-nowrap" onclick="window.location.href='/profile/{{id}}'">
+            @{{username}}
+          </h3>
+      </div>
+
+        <button id="{{type}}{{-index}}" class="px-3 py-2 text-sm font-medium text-center transition rounded-full cursor-pointer text-white-0 bg-red-3 hover:scale-110">
+
+        </button>
+    </div>
+</div>

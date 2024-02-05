@@ -1,0 +1,39 @@
+{{#notifications}}
+<div
+        class="notification {{type}} flex gap-2 px-3 py-4 border-b cursor-pointer sm:px-6 sm:gap-5 dark:hover:bg-black-6 border-gray-9 dark:border-black-5 hover:bg-gray-7">
+  <!-- EMOJI IDENTIFIER -->
+  <figure id="{{id}}svg" class="flex items-start justify-end pl-4">
+    <!--svg-->
+  </figure>
+
+  <!-- CONTENT -->
+  <article class="flex flex-col gap-3">
+    <!-- USER LOGOS -->
+    <div class="flex gap-2">
+      <figure class="w-8 duration-200 rounded-full hover:opacity-80 hover:bg-black-1">
+        <img class="object-contain w-full h-full rounded-full" onload="loadSVG('{{id}}', '{{type}}'); 
+                                                                       loadNotificationText('{{id}}', '{{type}}');
+                                                                       loadUserSVG('{{id}}', '{{userWhoNotifies.type}}')"
+             src="users/{{userWhoNotifies.id}}/user-image" alt="User profile photo" onclick="window.location.href='/profile/{{userWhoNotifies.id}}'">
+      </figure>
+    </div>
+
+    <!-- USERNAMES - it has display flex because we have to mix up anchor and svg tags -->
+    <h2 id="{{id}}userH2" class="flex flex-wrap items-center gap-1 text-sm dark:text-gray-3">
+      <a id="{{id}}userNameSvg" class="flex items-center gap-1 overflow-hidden font-bold hover:underline decoration-1 text-ellipsis whitespace-nowrap"
+         href="/profile/{{userWhoNotifies.id}}">
+        {{userWhoNotifies.nickname}}
+          <!--svg name-->
+      </a>
+      <!--notification text-->
+    </h2>
+    <!-- TWEET -->
+    {{#tweetTrigger}}
+      <section>
+        <h4 onclick="window.location.href='/tweet/{{id}}'" class="text-sm font-normal dark:text-gray-5 dark:font-semibold text-gray-4">{{tweetTrigger.text}}
+        </h4>
+      </section>
+    {{/tweetTrigger}}
+  </article>
+</div>
+{{/notifications}}

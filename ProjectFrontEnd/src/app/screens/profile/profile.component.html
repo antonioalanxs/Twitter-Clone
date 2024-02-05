@@ -1,0 +1,163 @@
+<div *ngIf="userInformation"
+  class="relative w-screen min-h-screen llg:max-w-[700px] border-l border-r border-transparent llg:border-gray-9 llg:dark:border-black-5">
+  <!-- HEADER -->
+  <header class="sticky top-0 left-0 z-10 border-b backdrop-blur-md border-gray-9 dark:border-black-5">
+    <div class="flex items-center justify-between py-2 pl-6 pr-3">
+      <div class="flex gap-4">
+        <!-- GO BACK -->
+        <a class="cursor-pointer group" [routerLink]="['/home']">
+          <svg
+            class="transition rounded-full w-7 dark:fill-white-0 fill-gray-4 group-hover:fill-primary group-hover:bg-blue-1 group-dark:hover:bg-blue-0"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <g>
+              <path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z">
+              </path>
+            </g>
+          </svg>
+        </a>
+
+        <!-- USERNAME AND SVG -->
+        <section class="flex items-center gap-2 cursor-pointer">
+          <h2 class="text-xl font-semibold dark:text-white-0">{{nickname}}</h2>
+
+          <div class="w-6">
+            <div *ngIf="!(userInformation.user.type === 'PUBLIC')" class="w-5">
+              <svg attr.viewBox="{{viewBox}}"
+                [ngClass]="{'fill-red-3':userInformation.user.type === 'BANNED','fill-primary':userInformation.user.type === 'VERIFIED'}">
+                <g>
+                  <path attr.d="{{svg}}" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- THEME SWITCHER -->
+      <app-theme-switcher-button></app-theme-switcher-button>
+    </div>
+  </header>
+
+  <!-- PROFILE -->
+  <div>
+    <!-- BANNER -->
+    <figure class="h-max-[165px]">
+      <img class="object-fill w-full h-full" [src]="urlToBannerPic" alt="">
+    </figure>
+
+    <div class="relative flex flex-col gap-3 px-5 pb-6 border-b bottom-9 border-gray-9 dark:border-black-5">
+      <!-- PHOTO -->
+      <figure
+        class="transition border-[6px] rounded-full cursor-pointer hover:scale-110 w-28 lmd:w-36 dark:border-black-0 border-white-0">
+        <img class="object-fill w-full h-full rounded-full" [src]="urlToProfilePic" alt="Profile photo">
+      </figure>
+
+      <!-- USERNAME AND @ -->
+      <article class="flex flex-col items-start justify-between">
+        <section class="flex items-center gap-2">
+          <h2 class="text-2xl font-semibold dark:text-white-0">{{nickname}}</h2>
+
+          <div class="w-6">
+            <div *ngIf="!(userInformation.user.type === 'PUBLIC')" class="w-5">
+              <svg attr.viewBox="{{viewBox}}"
+                [ngClass]="{'fill-red-3':userInformation.user.type === 'BANNED','fill-primary':userInformation.user.type === 'VERIFIED'}">
+                <g>
+                  <path attr.d="{{svg}}" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <h3 class="font-semibold text-md dark:font-normal text-gray-2">
+          @{{username}}</h3>
+      </article>
+
+      <!-- BIOGRAPHY -->
+      <p class="overflow-hidden text-md text-ellipsis text-twitter-dark-gray dark:text-white-0">
+        {{biography}}
+      </p>
+
+      <!-- JOIN DATE -->
+      <div class="flex items-center gap-2">
+        <svg class="w-6 fill-gray-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <g>
+            <path
+              d="M7 4V3h2v1h6V3h2v1h1.5C19.89 4 21 5.12 21 6.5v12c0 1.38-1.11 2.5-2.5 2.5h-13C4.12 21 3 19.88 3 18.5v-12C3 5.12 4.12 4 5.5 4H7zm0 2H5.5c-.27 0-.5.22-.5.5v12c0 .28.23.5.5.5h13c.28 0 .5-.22.5-.5v-12c0-.28-.22-.5-.5-.5H17v1h-2V6H9v1H7V6zm0 6h2v-2H7v2zm0 4h2v-2H7v2zm4-4h2v-2h-2v2zm0 4h2v-2h-2v2zm4-4h2v-2h-2v2z">
+            </path>
+          </g>
+        </svg>
+
+        <div class="font-semibold text-md dark:font-normal text-gray-2">
+          {{joinDate | date:"MM/dd/yy"}}
+        </div>
+      </div>
+
+      <!-- FOLLOWING AND FOLLOWERS -->
+      <div class="flex flex-row gap-3">
+        <a [routerLink]="['/profile', username, 'followed']">
+          <div class="flex items-center gap-1">
+            <span class="font-semibold text-md dark:text-white-0 hover:underline">{{followedNumber}}</span>
+            <span class="font-semibold text-md dark:font-normal text-gray-2 hover:underline">Following</span>
+          </div>
+        </a>
+        <a [routerLink]="['/profile', username, 'followers']">
+          <div class="flex items-center gap-1">
+            <span class="font-semibold text-md dark:text-white-0 hover:underline">{{followersNumber}}</span>
+            <span class="font-semibold text-md dark:font-normal text-gray-2 hover:underline">Followers</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- EDIT PROFILE AND "GO TO DASHBOARD" BUTTONS -->
+      <div *ngIf="isLogged">
+        <div *ngIf="isYourProfile; else otherCont">
+          <div class="xlsm:absolute xlsm:right-8 xlsm:top-[62px]">
+            <div class="flex items-center gap-1 xlsm:gap-4">
+              <a class="px-4 py-2 text-sm font-bold text-center transition bg-transparent border-2 cursor-pointer w-fit border-black-0 rounded-3xl dark:border-white-0 dark:text-white-0 text-black-0 hover:scale-110"
+                [routerLink]="['/profile', username, 'edit-profile']">
+                Edit profile
+              </a>
+              <div *ngIf="isAdmin">
+                <a class="px-4 py-2 font-semibold text-center transition scale-90 rounded-full cursor-pointer xlsm:scale-100 text-white-0 bg-primary hover:scale-100 xlsm:hover:scale-110"
+                  [routerLink]="['/dashboard']">
+                  Go to dashboard
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #otherCont>
+          <div class="absolute right-8 top-[62px] flex gap-5">
+            <div *ngIf="isAdmin">
+              <div *ngIf="isNotBanned">
+                <button (click)="banUser();"
+                  class="px-4 py-2 font-bold text-center transition rounded-full cursor-pointer text-white-0 bg-red-3 hover:scale-110">
+                  Ban user
+                </button>
+              </div>
+            </div>
+
+            <div *ngIf="isFollowed; else notFollowed">
+              <button id="unfollow-button" (click)="toggleFollowUser();"
+                class="px-4 py-2 font-bold text-center transition rounded-full cursor-pointer text-white-0 bg-red-3 hover:scale-110">
+                Unfollow
+              </button>
+            </div>
+            <ng-template #notFollowed>
+              <button id="follow-button" (click)="toggleFollowUser();"
+                class="px-4 py-2 font-bold text-center transition rounded-full cursor-pointer text-white-0 bg-primary hover:scale-110">
+                Follow
+              </button>
+            </ng-template>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <div *ngIf="showChild" class="relative bottom-9">
+      <app-tweet-list typeElement="Profile" [userId]="userInformation.user.id"></app-tweet-list>
+    </div>
+  </div>
+  
+</div>

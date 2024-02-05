@@ -1,0 +1,47 @@
+<div
+    class="flex gap-2 px-3 py-4 border-b cursor-pointer sm:px-6 sm:gap-5 dark:hover:bg-black-6 border-gray-9 dark:border-black-5 hover:bg-gray-7">
+    <!-- EMOJI IDENTIFIER -->
+    <figure class="flex items-start justify-end pl-4">
+        <svg viewBox="0 0 24 24" aria-hidden="true" [ngClass]="{'fill-violet-0':this.notification.type === 'MENTION', 'fill-red-0': this.notification.type === 'LIKE', 'fill-green-0': this.notification.type === 'RETWEET', 'fill-primary': this.notification.type === 'FOLLOW'}" class="w-8">
+            <g>
+                <path
+                    attr.d="{{path}}">
+                </path>
+            </g>
+        </svg>
+    </figure>
+
+    <!-- CONTENT -->
+    <article class="flex flex-col gap-3">
+        <!-- USER LOGOS -->
+        <div class="flex gap-2">
+            <figure class="w-8 duration-200 rounded-full hover:opacity-80 hover:bg-black-1">
+                <img class="object-contain w-full h-full rounded-full"
+                    [src]="profileImgSrc" alt="User profile photo" [routerLink]="['/profile', notification.userWhoNotifies.username]">
+            </figure>
+        </div>
+
+        <!-- USERNAMES - it has display flex because we have to mix up anchor and svg tags -->
+        <h2 class="flex flex-wrap items-center gap-1 text-sm dark:text-gray-3">
+            <a class="flex items-center gap-1 overflow-hidden font-bold hover:underline decoration-1 text-ellipsis whitespace-nowrap"
+            [routerLink]="['/profile', notification.userWhoNotifies.username]">
+                {{notification.userWhoNotifies.nickname}}
+                <div *ngIf="!(notification.userWhoNotifies.type === 'PUBLIC')" class="w-5">
+                    <svg attr.viewBox="{{viewBox}}" [ngClass]="{'fill-red-3':notification.userWhoNotifies.type === 'BANNED','fill-primary':notification.userWhoNotifies.type === 'VERIFIED'}">
+                        <g>
+                            <path attr.d="{{svg}}"/>
+                        </g>
+                    </svg>
+                </div>
+            </a>
+            {{notificationTypeText}}
+        </h2>
+        <!-- TWEET -->
+        <section *ngIf="hasText">
+            <h4 [routerLink]="['/tweet/', notification.tweetTrigger.id]" class="text-sm font-normal dark:text-gray-5 dark:font-semibold text-gray-4">
+                {{notification.tweetTrigger.text}}
+            </h4>
+        </section>
+
+    </article>
+</div>
